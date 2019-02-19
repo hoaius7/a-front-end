@@ -6,7 +6,7 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
-axios.interceptors.request.use(request => {
+const requestInterceptor = axios.interceptors.request.use(request => {
     console.log(request);
     // Edit request config here
     return request;
@@ -15,7 +15,7 @@ axios.interceptors.request.use(request => {
     return Promise.reject(error);
 });
 
-axios.interceptors.response.use(response => {
+const responseInterceptor = axios.interceptors.response.use(response => {
     console.log(response);
     // Edit response config
     return response;
@@ -23,6 +23,9 @@ axios.interceptors.response.use(response => {
     console.error(error);
     return Promise.reject(error);
 });
+
+axios.interceptors.request.eject(requestInterceptor);
+axios.interceptors.response.eject(responseInterceptor);
 
 ReactDOM.render(<App />, document.getElementById('root'));
 
