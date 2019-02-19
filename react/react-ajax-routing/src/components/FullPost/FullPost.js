@@ -8,14 +8,6 @@ class FullPost extends Component {
         loadedPost: null
     }
 
-    deletePostHandler = () => {
-        axios.delete('https://jsonplaceholder.typicode.com/posts/' + this.props.id)
-            .then(response => {
-                console.log(response);
-            });
-    }
-
-
     componentDidUpdate() {
         if (this.props.id) {
             if (!this.state.loadedPost || this.state.loadedPost.id !== this.props.id) {
@@ -27,6 +19,13 @@ class FullPost extends Component {
                     });
             }
         }
+    }
+
+    deletePostHandler = () => {
+        axios.delete('https://jsonplaceholder.typicode.com/posts/' + this.props.id)
+            .then(response => {
+                console.log(response);
+            });
     }
 
     render () {
